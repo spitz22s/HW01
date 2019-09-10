@@ -1,0 +1,97 @@
+---
+title: "HW1-sec02"
+author: "Your Name Goes Here"
+output: pdf_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+# Details
+
+### Due Date
+
+This assignment is due at 12:00 on Tuesday, Sept 17.
+
+### Grading
+
+25% of your grade on this assignment is for completion.  A quick pass will be made to ensure that you've made a reasonable attempt at all problems.
+
+Some of the problems will be graded more carefully for correctness.  In grading these problems, an emphasis will be placed on full explanations of your thought process.  You usually won't need to write more than a few sentences for any given problem, but you should write complete sentences!  Understanding and explaining the reasons behind your decisions is more important than making the "correct" decision.
+
+Solutions to all problems will be provided.
+
+### Collaboration
+
+You are allowed to work with others on this assignment, but you must complete and submit your own write up.  You should not copy large blocks of code or written text from another student.
+
+### Sources
+
+You may refer to class notes, our textbook, Wikipedia, etc..  All sources you refer to must be cited in the space I have provided at the end of this problem set.
+
+In particular, you may find the following resources to be valuable:
+ * Courses assigned on DataCamp
+ * Example R code from class
+ * Cheat sheets and resources linked from [http://www.evanlray.com/stat340_f2019/resources.html]
+
+### Load Packages
+
+The following R code loads packages needed in this assignment.
+
+```{r}
+library(readr)
+library(dplyr)
+library(ggplot2)
+```
+
+## Problem 1: Leaf Margins
+
+For a variety of reasons, scientists are interested in the relationship between the climate of a region and characteristics of the plants and animals that live there.  For example, this could inform thinking about the impacts of climate change on natural resources, and could be used by paleontologists to learn about historical climatological conditions from the fossil record.
+
+In 1979, the US Geological service published a report discussing a variety of characteristics of forests throughout the world and discussed connections to the climates in those different regions (J. A. Wolfe, 1979, Temperature parameters of humid to mesic forests of eastern Asia and relation to forests of other regions of the Northern Hemisphere and Australasia, USGS Professional Paper, 1106).  One part of this report discussed the connection between the temperature of a region and the shapes of tree leaves in the forests in that region.  Generally, leaves can be described as either "serrated" (having a rough edge like a saw blade) or "entire" (having a smooth edge) - see the picture here: https://en.wikibooks.org/wiki/Historical_Geology/Leaf_shape_and_temperature.  One plot in the report displays the relationship between the mean annual temperature in a forested region (in degrees Celsius) and the percent of leaves in the forest canopy that are "entire".
+
+The data we will work with were extracted from that plot and are available in a spreadsheet at http://www.evanlray.com/data/misc/leaf_margins/leaf_margins.csv
+
+#### (a) Read the data into an R data frame and make a plot with the mean annual temperature on the horizontal axis and the percent of leaves in the given location that are entire margined on the vertical axis.
+
+```{r}
+
+```
+
+#### (b) Fit a linear regression model to the data.  Describe the interpretation of the estimated slope.
+
+```{r}
+
+```
+
+#### (c) Conduct a hypothesis test of the claim that there is no association between mean temperature and percent of leaves that are entire margined.  For this test, clearly state your null and alternative hypotheses in terms of model parameters.  State your conclusion in a complete sentence.  You don't need to "reject" or "fail to reject" the null hypothesis; instead, interpret what the p-value for the test means in terms of strength of evidence against the null hypothesis.  For example, a small p-value like 0.000002 indicates very strong evidence against the null hypothesis, while a large p-value like 0.2 indicates no evidence against the null hypothesis.
+
+
+
+### (d) Find and interpret a 95% confidence interval for the slope.
+
+```{r}
+
+```
+
+#### (e) State the model you have fit in matrix form.
+
+
+
+#### (f) Extract the design matrix from your model fit and use it to find the fitted values for the regression.  Make a scatter plot showing the original data as well as the fitted values.
+
+```{r}
+
+```
+
+# Collaboration and Sources
+
+If you worked with any other students on this assignment, please list their names here.
+
+
+
+If you referred to any sources (including our text book), please list them here.  No need to get into formal citation formats, just list the name of the book(s) you used or provide a link to any online resources you used.
+
+
+
