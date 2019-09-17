@@ -1,6 +1,6 @@
 ---
 title: "HW1-sec02"
-author: "Your Name Goes Here"
+author: "Stephanie Spitzer"
 output: pdf_document
 ---
 
@@ -56,40 +56,65 @@ The data we will work with were extracted from that plot and are available in a 
 #### (a) Read the data into an R data frame and make a plot with the mean annual temperature on the horizontal axis and the percent of leaves in the given location that are entire margined on the vertical axis.
 
 ```{r}
+leaf_margins <- read_csv("http://www.evanlray.com/data/misc/leaf_margins/leaf_margins.csv")
 
+ggplot(data = leaf_margins, mapping = aes(x = mean_annual_temp_C, y = pct_entire_margined)) + geom_point()
 ```
 
 #### (b) Fit a linear regression model to the data.  Describe the interpretation of the estimated slope.
 
 ```{r}
-
+fit_lm <- lm(pct_entire_margined ~ mean_annual_temp_C, data = leaf_margins)
+summary(fit_lm)
 ```
+
+For every 3.18058% increase in the number of leaves in a given location that are entire margined the mean annual temperature increases by one degree Celsius. 
+
 
 #### (c) Conduct a hypothesis test of the claim that there is no association between mean temperature and percent of leaves that are entire margined.  For this test, clearly state your null and alternative hypotheses in terms of model parameters.  State your conclusion in a complete sentence.  You don't need to "reject" or "fail to reject" the null hypothesis; instead, interpret what the p-value for the test means in terms of strength of evidence against the null hypothesis.  For example, a small p-value like 0.000002 indicates very strong evidence against the null hypothesis, while a large p-value like 0.2 indicates no evidence against the null hypothesis.
 
+H0: $$\beta_1$$ = 0 vs. H1: $$\beta_1$$ $\neq$ 0, where $$\beta_1$$ is the estimated coefficient for the mean annual temperature.
 
+From the summary output above, the p-value for this test is less than 2*10^-16.
+
+Since this is less than any reasonable significance level of a, we have strong evidence indicating that there is no  association between the mean annual temperature and the percent of leaves that are entire margined. 
 
 ### (d) Find and interpret a 95% confidence interval for the slope.
 
 ```{r}
-
+confint(fit_lm, "mean_annual_temp_C", level = 0.95)
 ```
+For each one degree Celsisus increase in the mean annual temperature, there will be an average increase in the percentage of leaves that are entire margined of between 3.04% and 3.32%.
+
 
 #### (e) State the model you have fit in matrix form.
 
+$ \mathbf{Y} = \mathbf{X}\beta + \epsilon $
 
+Since this is a simple linear regression, $\beta$ is a 2x1 vector and has the values $$\beta = \begin{bmatrix}\beta_0\\
+\beta_1\\
+\end{bmatrix} = \begin{bmatrix}-2.17\\
+3.18\\
+\end{bmatrix}$$. Additionally, $\mathbf{Y}$ and $\epsilon$ are 34x1 vectors that contain the responses for the percent of leaves that are entire margined and the error terms respectively. Finally, $\mathbf{X}$ is a 34x2 matrix, where the first column is all 1's and the second column contains each independent variable for the mean annual temperature. 
 
 #### (f) Extract the design matrix from your model fit and use it to find the fitted values for the regression.  Make a scatter plot showing the original data as well as the fitted values.
 
 ```{r}
+fitted_values <- fit_lm$fitted.values
+fitted_values
 
+data <- stack(data.frame(fitted_values, leaf_margins$pct_entire_margined))
+data <- cbind(data, x = rep(leaf_margins$mean_annual_temp_C, 2))
+head(data)
+require("lattice")
+xyplot(values ~ data$x, data = data, group = ind, auto.key = TRUE)
 ```
 
 # Collaboration and Sources
 
 If you worked with any other students on this assignment, please list their names here.
 
-
+Anamika Khanal and Susan Khan
 
 If you referred to any sources (including our text book), please list them here.  No need to get into formal citation formats, just list the name of the book(s) you used or provide a link to any online resources you used.
 
